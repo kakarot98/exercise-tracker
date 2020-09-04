@@ -1,5 +1,6 @@
 const router = require("express").Router();
 let Exercise = require("../models/exercise.model");
+const { json } = require("express");
 
 router.route("/").get((req, res) => {
   Exercise.find()
@@ -14,15 +15,28 @@ router.route("/add").post((req, res) => {
   const date = Date.parse(req.body.date);
 
   const newExercise = new Exercise({
-      username,
-      description,
-      duration,
-      date,
-  })
+    username,
+    description,
+    duration,
+    date,
+  });
 
-  newExercise.save()
+  newExercise
+    .save()
     .then(() => res.json("Exercise added!"))
     .catch((err) => res.status(400).json("Error!" + err));
+});
+
+router.route("/:id").get((req, res) => {
+  Exercise.findById(req.params.id)
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json("Error:" + err));
+});
+
+router.route("/:id").delete((req, res) => {
+  Exercise.findByIdAndDelete(req.params.id)
+    .then(() => res.json("Exercise has beeen deleted"))
+    .catch((err) => res.status(400), json("Error:" + err));
 });
 
 module.exports = router;
