@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,11 @@ const CreateUser = () => {
       username: username,
     };
     console.log(user);
+
+    axios
+      .post("http://localhost:5000/users/add", user)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
 
     setUsername("");
   };
@@ -29,7 +35,11 @@ const CreateUser = () => {
           />
         </div>
         <div className="form-group">
-            <input type="submit" className="btn btn-primary" value="Create User"/>
+          <input
+            type="submit"
+            className="btn btn-primary"
+            value="Create User"
+          />
         </div>
       </form>
     </div>
