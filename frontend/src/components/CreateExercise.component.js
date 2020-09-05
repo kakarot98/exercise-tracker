@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 const CreateExercise = () => {
   const [username, setUsername] = useState("");
@@ -10,8 +11,13 @@ const CreateExercise = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    setUsername("test user");
-    setUsers(["test user"]);
+    axios.get('http://localhost:5000/users/')
+    .then(res => {
+        if(res.data.length > 0){
+            setUsername(res.data[0].username);
+            setUsers(res.data.map(user => user.username));
+        }
+    })
   }, []);
 
   const onSubmit = (e) => {
@@ -21,11 +27,14 @@ const CreateExercise = () => {
       username: username,
       description: description,
       duration: duration,
-      date: date,
-      users: users,
+      date: date
     };
 
     console.log(exercises);
+    axios
+      .post("http://localhost:5000/exercises/add", exercises)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log("The Error is : " + err));
 
     //window.location = "/";
   };
