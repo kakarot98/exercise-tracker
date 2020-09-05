@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateExercise = () => {
   const [username, setUsername] = useState("");
@@ -23,8 +24,10 @@ const CreateExercise = () => {
       date: date,
       users: users,
     };
+
     console.log(exercises);
-    window.location = "/";
+
+    //window.location = "/";
   };
 
   return (
@@ -34,7 +37,6 @@ const CreateExercise = () => {
         <div className="form-group">
           <label>Username: </label>
           <select
-            
             required
             className="form-control"
             value={username}
@@ -67,6 +69,22 @@ const CreateExercise = () => {
             className="form-control"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Date: </label>
+          <div>
+            <DatePicker
+              selected={date}
+              onChange={(selectedDate) => setDate(selectedDate)}
+            />
+          </div>
+        </div>
+        <div className="form-group">
+          <input
+            type="submit"
+            value="Create the exercise"
+            className="btn btn-primary"
           />
         </div>
       </form>

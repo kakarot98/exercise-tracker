@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <NavBar />
+        <NavBar/>
         <br />
         <Route path="/" exact component={ExerciseList} />
         <Route path="/edit/:id" exact component={EditExercise} />
