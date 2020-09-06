@@ -18,6 +18,8 @@ const CreateUser = () => {
       .catch((err) => console.log(err));
 
     setUsername("");
+
+    window.location = "/create"
   };
 
   return (
