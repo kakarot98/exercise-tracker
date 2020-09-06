@@ -36,7 +36,7 @@ const CreateExercise = () => {
       .then((res) => console.log(res.data))
       .catch((err) => console.log("The Error is : " + err));
 
-    //window.location = "/";
+    window.location = "/";
   };
 
   return (
