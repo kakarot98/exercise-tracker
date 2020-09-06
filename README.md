@@ -5,4 +5,4 @@ If you are downloading this project then make sure to create your own Cluster on
 
 Here is a GIF to show you how the web-app looks like:
 
-![](https://github.com/kakarot98/exercise-tracker/ScreenRecording.gif)
+![](https://github.com/kakarot98/exercise-tracker/blob/master/ScreenRecording.gif)
